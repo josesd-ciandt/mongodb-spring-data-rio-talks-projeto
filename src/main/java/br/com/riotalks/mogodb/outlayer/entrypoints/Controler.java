@@ -49,12 +49,14 @@ public class Controler {
     @ApiOperation(value = "Recebe um email de usuário e busca o mesmo no banco de dados")
     @GetMapping(value = "/user")
     @ResponseStatus(HttpStatus.OK)
-    public List<User> getFullUrl(@RequestParam(required = false) String email,
+    public List<User> getFullUrl(@RequestParam(required = false) String id,
+                                 @RequestParam(required = false) String email,
                            @RequestParam(required = false) String name,
                            @RequestParam(required = false) Integer age,
                            @RequestParam(required = false) String dataNascimento) throws Exception {
 
         return getUser.execute(User.builder()
+                .id(id)
                 .age(age)
                 .name(name)
                 .email(email)
