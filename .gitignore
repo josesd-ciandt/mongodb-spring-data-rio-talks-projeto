@@ -1,0 +1,30 @@
+.gradle/*
+/build/*
+/target/*
+/out/*
+/node_modules/
+/bin/*
+/log/*
+/.settings/*
+.classpath
+.project
+*/junitResult.xml
+*/gherkin-results/*
+
+### IntelliJ IDEA ###
+.idea/*
+*.iws
+*.iml
+*.ipr
+
+!.idea/saveactions_settings.xml
+
+### Docker Images ###
+**/docker/**/.cache
+
+### Log ###
+LOG_FILE_IS_UNDEFINED
+*.log
+
+*.DS_Store
+

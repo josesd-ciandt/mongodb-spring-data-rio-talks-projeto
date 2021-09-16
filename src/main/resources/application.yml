@@ -1,0 +1,51 @@
+# Default profile: DEV
+spring:
+  application:
+    name: mongodb-spring-data
+  profiles:
+    active: local
+
+server:
+  port: 8080
+  http2: # Enable HTTP/2 support
+    enabled: true
+  compression: # Server compression
+    enabled: true
+    min-response-size: 2048
+    mime-types: application/json
+
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    jmx:
+      exposure:
+        exclude: "*"
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+
+# Logging
+logging:
+  path: log
+  file: ${logging.path}/${spring.application.name}.log
+  level:
+    org:
+      springframework: WARN
+      eclipse: WARN
+    com:
+      netflix: WARN
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: basic
+  hystrix:
+    enabled: false
+  okhttp:
+    enabled: true
+  httpclient:
+    disableSslValidation: true

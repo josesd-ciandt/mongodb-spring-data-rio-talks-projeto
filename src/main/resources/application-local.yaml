@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      uri: "mongodb://riotalks:riotalks@localhost:27017/?authSource=riotalks&readPreference=primary&directConnection=true&ssl=false"
+      database: riotalks
+
+config:
+  flag: false

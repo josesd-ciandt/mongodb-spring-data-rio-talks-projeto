@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProfile name="default, local, ICP, staging, integration, component">
+        <property name="APP_NAME" value="mongodb-spring-data"/>
+        <property name="LOG_FILE" value="out/logs/mongodb-spring-data.log"/>
+        <property name="LOG_FILE_MAX_SIZE" value="10MB"/>
+        <property name="LOG_FILE_MAX_HISTORY" value="20"/>
+        <property name="LOG_FILE_TOTAL_SIZE" value="50MB"/>
+    </springProfile>
+
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="ERROR"/>
+    <logger name="org.apache.catalina.util.LifecycleBase" level="ERROR"/>
+    <logger name="org.apache.coyote.http11.Http11NioProtocol" level="WARN"/>
+    <logger name="org.apache.sshd.common.util.SecurityUtils" level="WARN"/>
+    <logger name="org.apache.tomcat.util.net.NioSelectorPool" level="WARN"/>
+    <logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="ERROR"/>
+    <logger name="org.hibernate.validator.internal.util.Version" level="WARN"/>
+    <logger name="io.swagger.models.parameters.AbstractSerializableParameter" level="ERROR"/>
+
+    <property name="CONSOLE_PATTERN"
+              value="%d{HH:mm:ss.SSS} | %highlight(%-5level) | %logger{136} %n%msg %n%ex%n"/>
+    <property name="FILE_PATTERN"
+              value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] [%logger{36}] : %msg%n %ex%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${CONSOLE_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${FILE_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-50MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-60}</maxHistory>
+            <totalSizeCap>${LOG_FILE_TOTAL_SIZE:-10GB}</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
