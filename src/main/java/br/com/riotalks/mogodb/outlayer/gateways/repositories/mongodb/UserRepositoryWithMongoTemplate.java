@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Component
@@ -24,16 +25,15 @@ public class UserRepositoryWithMongoTemplate {
         return userCreated;
     }
 
-    public User find(User user) {
+    public List<User> find(User user) {
 
         Query query = new Query(new Criteria().orOperator(
-                Criteria.where("name").is(user.getName()),
-                Criteria.where("email").is(user.getEmail()),
-                Criteria.where("age").is(user.getAge()),
+                Criteria.where("name").regex(Objects.nonNull(user.getName()) ? user.getName() : ""),
+                Criteria.where("email").regex(Objects.nonNull(user.getEmail()) ? user.getEmail() : ""),
+                Criteria.where("age").lte(user.getAge()),
                 Criteria.where("birthDate").is(user.getBirthDate())));
 
-        User userCreated = mongoTemplate.findOne(query, User.class);
-        return userCreated;
+        return mongoTemplate.find(query, User.class);
     }
 
     public User update(User user) {

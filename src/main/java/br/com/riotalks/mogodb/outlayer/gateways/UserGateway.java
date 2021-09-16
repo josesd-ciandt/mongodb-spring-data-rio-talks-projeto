@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 public interface UserGateway {
-    User getUser(User user) throws Exception;
+    List<User> getUser(User user) throws Exception;
 
     User updateUser(User user);
 

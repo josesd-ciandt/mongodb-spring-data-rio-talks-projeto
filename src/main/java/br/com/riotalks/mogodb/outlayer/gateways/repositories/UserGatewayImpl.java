@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -39,10 +41,10 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
-    public User getUser(User user) {
+    public List<User> getUser(User user) {
         try {
             if (flag) {
-                return userRepository.findMongo(user.getEmail());
+                return Collections.singletonList(userRepository.findMongo(user.getEmail()));
             } else {
                 return userRepositoryWithMongoTemplate.find(user);
             }

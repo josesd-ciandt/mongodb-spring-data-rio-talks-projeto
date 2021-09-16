@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -13,7 +15,7 @@ public class GetUser {
 
     private final UserGateway userGateway;
 
-    public User execute(User user) throws Exception {
+    public List<User> execute(User user) throws Exception {
         return userGateway.getUser(user);
     }
 
