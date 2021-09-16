@@ -1,8 +1,0 @@
-spring:
-  data:
-    mongodb:
-      uri: "mongodb+srv://riotalks:riotalks@rio-talks.ugj4n.mongodb.net/riotalks?retryWrites=true&w=majority"
-      database: riotalks
-
-config:
-  flag: false
