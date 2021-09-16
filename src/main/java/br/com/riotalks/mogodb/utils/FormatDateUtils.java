@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
@@ -25,5 +26,20 @@ public class FormatDateUtils {
             throw new DateTimeException(String.format("We can't parse date %s to %s", date, DATE_FORMAT));
         }
     }
+
+    public static Date formatDate(Date date) {
+        SimpleDateFormat formato = new SimpleDateFormat(DATE_FORMAT);
+        return Objects.nonNull(date) ? formatDate(formato.format(date)) : null;
+    }
+
+    public static Date formatDate(Instant date) {
+        SimpleDateFormat formato = new SimpleDateFormat(DATE_FORMAT);
+        Date.from(date);
+        return Objects.nonNull(date) ? formatDate(formato.format(date)) : null;
+    }
+
+
+
+
 
 }
