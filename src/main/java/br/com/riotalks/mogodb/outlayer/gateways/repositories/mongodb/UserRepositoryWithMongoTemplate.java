@@ -27,6 +27,7 @@ public class UserRepositoryWithMongoTemplate {
     public List<User> find(User user) {
 
         Query query = new Query(new Criteria().orOperator(
+                Criteria.where("id").is(user.getId()),
                 Criteria.where("name").regex(user.getName()),
                 Criteria.where("email").is(user.getEmail()),
                 Criteria.where("age").is(user.getAge()),
