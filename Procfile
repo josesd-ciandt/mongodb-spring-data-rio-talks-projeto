@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT $JAVA_OPTS build/libs/mongodb-spring-data-0.0.1-SNAPSHOT.jar
